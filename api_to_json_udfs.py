@@ -4,7 +4,6 @@
 
 import http.client
 import json
-import pandas as pd
 
 from typing import Optional
 

@@ -3,6 +3,6 @@
 
 from api_to_json_udfs import api_to_json
 
-endpoints = ['timezone', 'countries']
+endpoints = ['timezone', 'countries', 'leagues']
 for endpoint in endpoints:
     api_to_json(endpoint)

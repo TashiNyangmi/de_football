@@ -4,12 +4,14 @@
 # UDFs imported by other files:
 # json_to_mysql.ipynb -> get_mysql_connection
 
-from sqlalchemy import create_engine
+#---------------------------------------------------------------
 
+from sqlalchemy import create_engine
+from sqlalchemy.engine import Engine
 
 from typing import Tuple
 
-
+#---------------------------------------------------------------
 
 def read_cred_from_file() -> Tuple[str, str]:
     """
@@ -44,16 +46,11 @@ def read_cred_from_file() -> Tuple[str, str]:
         raise Exception("Error occurred while reading credentials: " + str(e))
     
 
-    
-
+#---------------------------------------------------------------  
 
 SERVER_IP = '127.0.0.1'
 DB_CONNECT_PORT = 3306
 DB_USERNAME, DB_PASSWORD = read_cred_from_file()
-
-
-from sqlalchemy import create_engine
-from sqlalchemy.engine import Engine
 
 def get_mysql_connection(username: str = DB_USERNAME, password: str = DB_PASSWORD,
                          server_ip: str = SERVER_IP, server_connect_port: int = DB_CONNECT_PORT,
@@ -72,7 +69,7 @@ def get_mysql_connection(username: str = DB_USERNAME, password: str = DB_PASSWOR
     """
     connection_string = f'mysql+pymysql://{username}:{password}@{server_ip}'
     if connect_to_database:
-        connection_string = connection_string + '/{db_name}'
+        connection_string = connection_string + f'/{db_name}'
     try:
        
             
@@ -83,6 +80,7 @@ def get_mysql_connection(username: str = DB_USERNAME, password: str = DB_PASSWOR
         raise ConnectionError(f"Failed to connect to the MySQL database: {e}")
 
 
+#---------------------------------------------------------------
 
 
 def flatten_dict(dictionary, parent_key='', sep='_'):
@@ -105,3 +103,5 @@ def flatten_dict(dictionary, parent_key='', sep='_'):
         else:
             flattened_dict[new_key] = value
     return flattened_dict
+
+#---------------------------------------------------------------
